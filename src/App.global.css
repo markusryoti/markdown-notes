@@ -64,3 +64,8 @@ body {
   font-family: 'Roboto Mono', sans-serif;
   cursor: pointer;
 }
+
+.markdown-text-area::selection {
+  background-color: var(--bright-green-text);
+  color: var(--light-text);
+}
