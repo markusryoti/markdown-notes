@@ -1,11 +1,13 @@
 /* eslint-disable react/display-name */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ipcRenderer } from 'electron';
+import { TextContext } from '../context/TextProvider';
 
-export default function TextArea() {
-  const [text, setText] = useState('');
+const TextArea: React.FC = () => {
+  const { currentState, setText } = useContext(TextContext);
+  const { text } = currentState;
 
-  // Main process provides the file contents
+  // Main process provides the file contents on app start
   ipcRenderer.on(
     'initialMarkdownUpdate',
     (_: Electron.IpcRendererEvent, args: string) => {
@@ -19,7 +21,8 @@ export default function TextArea() {
   }, []);
 
   // Send ipc message when state changes
-  // Avoids concurrency issues
+  // Avoids concurrency issues with useEffect which happen if the state
+  // if ipc process is done in updateText function
   useEffect(() => {
     ipcRenderer.send('markdownTextUpdate', text);
   }, [text]);
@@ -38,4 +41,6 @@ export default function TextArea() {
       />
     </div>
   );
-}
+};
+
+export default TextArea;

@@ -69,3 +69,13 @@ body {
   background-color: var(--bright-green-text);
   color: var(--light-text);
 }
+
+.preview-icon-container {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.preview-icon-container i {
+  color: var(--bright-green-text);
+}
