@@ -20,6 +20,8 @@ body {
   height: 100vh;
   background-color: var(--dark-bg);
   overflow: hidden;
+  font-family: 'Roboto Mono', sans-serif;
+  color: var(--bright-green-text);
 }
 
 ::-webkit-scrollbar {
@@ -56,12 +58,10 @@ body {
   padding: 30px;
   padding-bottom: 10px;
   background-color: var(--dark-bg);
-  color: var(--bright-green-text);
   border: none;
   outline: none;
   resize: none;
   font-size: 12pt;
-  font-family: 'Roboto Mono', sans-serif;
   cursor: pointer;
 }
 
@@ -105,13 +105,25 @@ li::marker {
   list-style-position: inside;
 }
 
-.preview-icon-container {
+.icon-container {
+  margin-left: 150px;
   margin-top: 5px;
   display: flex;
   justify-content: center;
 }
 
-.preview-icon-container i {
+.icon-container i {
   color: var(--bright-green-text);
   padding: 0 5px;
+}
+
+#hover-option {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 150px;
+  margin-left: 5px;
+  color: var(--dark-green-text);
+  font-size: 10pt;
+  font-weight: 800;
 }

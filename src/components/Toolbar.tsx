@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable prefer-template */
 /* eslint-disable promise/always-return */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/display-name */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextContext } from '../context/TextProvider';
 import { writeMarkdownToFileWithPath } from '../fileio/io';
 
@@ -17,8 +19,12 @@ interface IFileSaveResponse {
 
 const Toolbar: React.FC = () => {
   const { currentState, togglePreviewMode, setText } = useContext(TextContext);
+  const [infoText, setInfoText] = useState('');
 
-  const handlePreviewIconClick = (): void => {
+  const handlePreviewIconClick = (e: any): void => {
+    e.target.id === 'preview-mode-btn'
+      ? setInfoText('Edit Mode')
+      : setInfoText('Enable Preview');
     togglePreviewMode();
   };
 
@@ -43,18 +49,63 @@ const Toolbar: React.FC = () => {
     setText('');
   };
 
+  const handleIconHover = (e: any): void => {
+    switch (e.target.id) {
+      case 'preview-mode-btn':
+        setInfoText('Enable Preview');
+        break;
+
+      case 'edit-mode-btn':
+        setInfoText('Edit Mode');
+        break;
+
+      case 'save-btn':
+        setInfoText('Save');
+        break;
+
+      case 'clear-btn':
+        setInfoText('Clear');
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
-    <div className="preview-icon-container">
+    <div className="icon-container">
       {currentState.previewMode ? (
         <i
+          id="edit-mode-btn"
           className="fas fa-2x fa-eye-slash"
           onClick={handlePreviewIconClick}
+          onMouseOver={handleIconHover}
+          onMouseLeave={() => setInfoText('')}
         />
       ) : (
-        <i className="fas fa-2x fa-eye" onClick={handlePreviewIconClick} />
+        <i
+          id="preview-mode-btn"
+          className="fas fa-2x fa-eye"
+          onClick={handlePreviewIconClick}
+          onMouseOver={handleIconHover}
+          onMouseLeave={() => setInfoText('')}
+        />
       )}
-      <i className="fas fa-2x fa-save" onClick={handleSaveIconClick} />
-      <i className="fas fa-2x fa-ban" onClick={handleClearIconClick} />
+      <i
+        id="save-btn"
+        className="fas fa-2x fa-save"
+        onClick={handleSaveIconClick}
+        onMouseOver={handleIconHover}
+        onMouseLeave={() => setInfoText('')}
+      />
+      <i
+        id="clear-btn"
+        className="fas fa-2x fa-ban"
+        onClick={handleClearIconClick}
+        onMouseOver={handleIconHover}
+        onMouseLeave={() => setInfoText('')}
+      />
+      <p id="hover-option">{infoText}</p>
     </div>
   );
 };
