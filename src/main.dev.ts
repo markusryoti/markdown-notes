@@ -128,6 +128,7 @@ const initApp = async () => {
 
 ipcMain.on(
   'initialMarkdownRequest',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async (event: Electron.IpcMainEvent, _: string) => {
     event.sender.send('initialMarkdownUpdate', await textHandler.getText());
   }

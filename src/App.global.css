@@ -71,11 +71,19 @@ body {
 }
 
 .markdown-preview-area {
-  margin-top: 5px;
-  margin-right: 5px; /* Pushes scrollbar slightly */
-  padding-bottom: 50px;
-  height: 100%;
   overflow: auto;
+}
+
+.markdown-preview-area > p,
+.markdown-preview-area > ul,
+.markdown-preview-area > ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 10px;
 }
 
 .markdown-preview-area li {
