@@ -5,11 +5,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/display-name */
+
+import path from 'path';
 import React, { useContext, useState } from 'react';
 import { TextContext } from '../context/TextProvider';
 import { writeMarkdownToFileWithPath } from '../fileio/io';
 
 const { dialog } = require('electron').remote;
+const { shell } = require('electron').remote;
 
 interface IFileSaveResponse {
   canceled: boolean;
@@ -49,6 +52,10 @@ const Toolbar: React.FC = () => {
     setText('');
   };
 
+  const handleFolderIconClick = (): void => {
+    shell.showItemInFolder(path.join(process.cwd(), 'notes.md'));
+  };
+
   const handleIconHover = (e: any): void => {
     switch (e.target.id) {
       case 'preview-mode-btn':
@@ -65,6 +72,10 @@ const Toolbar: React.FC = () => {
 
       case 'clear-btn':
         setInfoText('Clear');
+        break;
+
+      case 'folder-btn':
+        setInfoText('Open Folder');
         break;
 
       default:
@@ -102,6 +113,13 @@ const Toolbar: React.FC = () => {
         id="clear-btn"
         className="fas fa-2x fa-ban"
         onClick={handleClearIconClick}
+        onMouseOver={handleIconHover}
+        onMouseLeave={() => setInfoText('')}
+      />
+      <i
+        id="folder-btn"
+        className="fas fa-2x fa-folder-open"
+        onClick={handleFolderIconClick}
         onMouseOver={handleIconHover}
         onMouseLeave={() => setInfoText('')}
       />
