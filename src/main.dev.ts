@@ -113,7 +113,7 @@ const createWindow = async () => {
   new AppUpdater();
 };
 
-const textHandler: MarkdownStateHandler = new MarkdownStateHandler();
+export const textHandler: MarkdownStateHandler = new MarkdownStateHandler();
 
 const initApp = async () => {
   const markdownFromFile: string | void = await readMarkdownFromFile();
