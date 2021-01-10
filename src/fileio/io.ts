@@ -22,6 +22,10 @@ export const writeMarkdownToFileWithPath = async (
 };
 
 export const readMarkdownFromFile = async (): Promise<string | void> => {
+  if (!fs.existsSync(fileName)) {
+    fs.writeFile(fileName, '', () => {});
+  }
+
   const contentPromise: Promise<string | void> = new Promise(
     (resolve, reject) => {
       fs.readFile(

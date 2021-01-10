@@ -63,6 +63,7 @@ body {
   resize: none;
   font-size: 12pt;
   cursor: pointer;
+  color: var(--bright-green-text);
 }
 
 .markdown-text-area::selection {
@@ -110,6 +111,7 @@ li::marker {
   margin-top: 5px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .icon-container i {
