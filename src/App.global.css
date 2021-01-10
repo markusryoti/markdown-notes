@@ -113,4 +113,5 @@ li::marker {
 
 .preview-icon-container i {
   color: var(--bright-green-text);
+  padding: 0 5px;
 }

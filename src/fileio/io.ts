@@ -1,10 +1,20 @@
-import { rejects } from 'assert';
 import fs from 'fs';
 
 export const fileName = 'notes.md';
 
 export const writeMarkdownToFile = async (content: string) => {
   await fs.writeFile(fileName, content, (err) => {
+    if (err) {
+      console.error(err);
+    }
+  });
+};
+
+export const writeMarkdownToFileWithPath = async (
+  content: string,
+  filePath: string
+) => {
+  await fs.writeFile(filePath, content, (err) => {
     if (err) {
       console.error(err);
     }
