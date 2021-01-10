@@ -70,6 +70,18 @@ body {
   color: var(--light-text);
 }
 
+.markdown-preview-area {
+  margin-top: 5px;
+  margin-right: 5px; /* Pushes scrollbar slightly */
+  padding-bottom: 50px;
+  height: 100%;
+  overflow: auto;
+}
+
+.markdown-preview-area li {
+  list-style-position: inside;
+}
+
 .preview-icon-container {
   margin-top: 5px;
   display: flex;
