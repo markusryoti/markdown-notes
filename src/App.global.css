@@ -63,6 +63,7 @@ body {
   resize: none;
   font-size: 12pt;
   cursor: pointer;
+  font-family: 'Roboto Mono', sans-serif;
   color: var(--bright-green-text);
 }
 
@@ -95,6 +96,13 @@ h5,
 h6 {
   padding-top: 10px;
   color: var(--dark-green-text);
+}
+
+hr {
+  height: 2px;
+  border: none;
+  background-color: var(--dark-green-text);
+  margin: 15px 0;
 }
 
 strong,
